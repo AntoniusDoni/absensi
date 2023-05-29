@@ -8,7 +8,6 @@ import (
 
 	"github.com/absensi/app/models"
 	"github.com/absensi/app/services"
-	"github.com/jaswdr/faker"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 )
@@ -50,7 +49,7 @@ func getDays(db *gorm.DB) {
 		if err != nil {
 			log.Printf("Error %s when Seed jadwal DB\n", err)
 		}
-		db.Where(models.Jadwal{SchaduleDate: date}).Attrs(models.Jadwal{SchaduleDate: date, SchaduleTimeIn: , SchaduleTimeOut: }).FirstOrCreate(&jadwal)
+		db.Where(models.Jadwal{SchaduleDate: date}).Attrs(models.Jadwal{SchaduleDate: date}).FirstOrCreate(&jadwal)
 	}
 
 }
