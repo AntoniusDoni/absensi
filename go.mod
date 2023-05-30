@@ -6,6 +6,8 @@ require (
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/go-playground/validator v9.31.0+incompatible
 	github.com/gofiber/fiber/v2 v2.46.0
+	github.com/gofiber/jwt/v2 v2.2.7
+	github.com/golang-jwt/jwt/v4 v4.5.0
 	github.com/google/uuid v1.3.0
 	github.com/joho/godotenv v1.5.1
 	golang.org/x/crypto v0.8.0

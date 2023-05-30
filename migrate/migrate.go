@@ -20,7 +20,7 @@ func main() {
 	db.AutoMigrate(
 		&models.Pegawai{},
 		&models.Roles{},
-		&models.Absesnsi{},
+		&models.Absensi{},
 		&models.Jadwal{},
 		&models.Cuti{},
 	)
@@ -69,12 +69,10 @@ func daysInMonth(t time.Time) []string {
 	mouth := int(t.Month())
 	for i := range days {
 		day := i + 1
-		var curdate string
-		var curmoth string
+		curdate := strconv.Itoa(day)
+		curmoth := strconv.Itoa(mouth)
 		if day < 10 {
 			curdate = fmt.Sprintf("0%v", day)
-		} else {
-			curdate = strconv.Itoa(day)
 		}
 		if mouth < 10 {
 			curmoth = fmt.Sprintf("0%v", mouth)

@@ -40,5 +40,5 @@ type UserRole struct {
 	Name     string    `gorm:"index" json:"name,omitempty"`
 	Password string    `json:"password,omitempty"`
 	IdRole   uuid.UUID `json:"id_role,omitempty"`
-	RoleName string    `json:"roles_name," `
+	RoleName string    `json:"role_name,omitempty" `
 }

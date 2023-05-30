@@ -53,6 +53,7 @@ func (auth *Handler) Login(ctx *fiber.Ctx) error {
 	// Set claims
 	claims := token.Claims.(jwt.MapClaims)
 	claims["user_id"] = user.Id
+	claims["nip"] = user.Nip
 	claims["role"] = user.RoleName
 	claims["exp"] = time.Now().Add(time.Minute * 10).Unix()
 	// Generate encoded token and send it as response.

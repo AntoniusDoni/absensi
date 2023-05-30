@@ -6,7 +6,8 @@ import (
 
 func (repo Repository) GetUserNip(nip string, user *models.UserRole) error {
 	db, _ := repo.Gormdb.GetInstanceConnect()
-	err := db.Model(&models.Pegawai{}).Select("pegawais.id as id", "nip", "id_role", "pegawais.name as name", "password", "phone", "roles.name as roles_name").Joins("inner join roles", "roles.id=id_role").Where("nip=? ", nip).Scan(&user).Error
+	err := db.Model(&models.Pegawai{}).Select("pegawais.id as id", "nip", "roles.id as id_role", "pegawais.name as name", "password", "roles.name as role_name").Joins("inner join roles", "roles.id=id_role").Where("nip=? ", nip).Scan(&user).Error
+
 	close, _ := db.DB()
 	close.Close()
 	return err

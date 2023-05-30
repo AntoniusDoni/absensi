@@ -9,7 +9,7 @@ import (
 
 type Roles struct {
 	Id        uuid.UUID      `gorm:"primaryKey" json:"roleId,omitempty"`
-	Name      string         `json:"roles_name," `
+	Name      string         `json:"name,omitempty" `
 	CreatedAt time.Time      `gorm:"autoCreateTime" json:"create_at,omitempty"`
 	UpdatedAt time.Time      `json:"update_at,omitempty"`
 	DeletedAt gorm.DeletedAt `gorm:"index" json:",omitempty"`
