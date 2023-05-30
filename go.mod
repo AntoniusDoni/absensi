@@ -3,6 +3,7 @@ module github.com/absensi
 go 1.19
 
 require (
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/go-playground/validator v9.31.0+incompatible
 	github.com/gofiber/fiber/v2 v2.46.0
 	github.com/google/uuid v1.3.0

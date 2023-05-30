@@ -23,3 +23,9 @@ func (absensi *Absesnsi) BeforeCreate(tx *gorm.DB) (err error) {
 	absensi.Id = uuid.New()
 	return
 }
+
+type RequestAbsen struct {
+	Nip  string `json:"nip" form:"nip" validate:"required"`
+	Long string `json:"long" form:"long" validate:"required"`
+	Lat  string `json:"lat" form:"lat" validate:"required"`
+}
