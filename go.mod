@@ -6,9 +6,9 @@ require (
 	github.com/go-playground/validator v9.31.0+incompatible
 	github.com/gofiber/fiber/v2 v2.46.0
 	github.com/google/uuid v1.3.0
-	github.com/jaswdr/faker v1.17.0
 	github.com/joho/godotenv v1.5.1
 	golang.org/x/crypto v0.8.0
+	gorm.io/datatypes v1.2.0
 	gorm.io/driver/mysql v1.5.1
 	gorm.io/driver/postgres v1.5.2
 	gorm.io/gorm v1.25.1

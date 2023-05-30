@@ -4,15 +4,16 @@ import (
 	"time"
 
 	"github.com/google/uuid"
+	"gorm.io/datatypes"
 	"gorm.io/gorm"
 )
 
 type Jadwal struct {
-	Id              uuid.UUID `gorm:"primaryKey"`
-	SchaduleDate    time.Time
-	SchaduleTimeIn  time.Time
-	SchaduleTimeOut time.Time
-	CreatedAt       time.Time `gorm:"autoCreateTime"`
+	Id              uuid.UUID      `gorm:"primaryKey"`
+	SchaduleDate    time.Time      `gorm:"type:date"`
+	SchaduleTimeIn  datatypes.Time `gorm:"type:time"`
+	SchaduleTimeOut datatypes.Time `gorm:"type:time"`
+	CreatedAt       time.Time      `gorm:"autoCreateTime"`
 	UpdatedAt       time.Time
 	DeletedAt       gorm.DeletedAt `gorm:"index"`
 }

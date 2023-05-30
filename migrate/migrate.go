@@ -9,6 +9,7 @@ import (
 	"github.com/absensi/app/models"
 	"github.com/absensi/app/services"
 	"golang.org/x/crypto/bcrypt"
+	"gorm.io/datatypes"
 	"gorm.io/gorm"
 )
 
@@ -23,13 +24,14 @@ func main() {
 		&models.Jadwal{},
 		&models.Cuti{},
 	)
-	seed(db)
+	Seed(db)
 	con, _ := db.DB()
-
 	con.Close()
+
 }
 
-func seed(db *gorm.DB) {
+func Seed(db *gorm.DB) {
+
 	role := new(models.Roles)
 	pegawai := new(models.Pegawai)
 	role.Name = "SuperAdmin"
@@ -37,6 +39,8 @@ func seed(db *gorm.DB) {
 	hashedPassword, _ := bcrypt.GenerateFromPassword([]byte("admin"), bcrypt.DefaultCost)
 	db.Where(models.Pegawai{Nip: "superadmin"}).Attrs(models.Pegawai{Nip: "superadmin", Name: "Super Admin", Password: string(hashedPassword), IdRole: role.Id}).FirstOrCreate(&pegawai)
 	getDays(db)
+	con, _ := db.DB()
+	con.Close()
 }
 
 func getDays(db *gorm.DB) {
@@ -44,12 +48,16 @@ func getDays(db *gorm.DB) {
 
 	jadwal := new(models.Jadwal)
 	for _, day := range days {
-		date, err := time.Parse("2006-01-02", day)
-
-		if err != nil {
-			log.Printf("Error %s when Seed jadwal DB\n", err)
+		if day != "" {
+			date, err := time.Parse("2006-01-02", day)
+			if err != nil {
+				log.Printf("Error %s when Seed jadwal DB\n", fmt.Sprintf("%v-%v", err, day))
+			}
+			startTime := datatypes.NewTime(9, 0, 0, 0)
+			endTime := datatypes.NewTime(17, 0, 0, 0)
+			db.Where(models.Jadwal{SchaduleDate: date}).Attrs(models.Jadwal{SchaduleDate: date, SchaduleTimeIn: startTime, SchaduleTimeOut: endTime}).FirstOrCreate(&jadwal)
 		}
-		db.Where(models.Jadwal{SchaduleDate: date}).Attrs(models.Jadwal{SchaduleDate: date}).FirstOrCreate(&jadwal)
+
 	}
 
 }
